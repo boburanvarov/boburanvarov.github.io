@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1693759768958,
+  "timestamp": 1693761633394,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -27,7 +27,7 @@
         "/3544.4e1ffc7d2a8b0060.js",
         "/3672.51b2dc3255f3d341.js",
         "/3734.f7e07053d3740a57.js",
-        "/397.8d260b9b8244f9d5.js",
+        "/397.fb9ac491cc8d9c72.js",
         "/3998.e554126e83bd603b.js",
         "/4087.1ac3553d2d419b63.js",
         "/4090.ab2cc22f5b858f54.js",
@@ -69,12 +69,15 @@
         "/9882.df097352f03797d3.js",
         "/9992.4033705d57d91248.js",
         "/common.9225203840700805.js",
+        "/cordova.1b4900b667e37cb3.js",
+        "/cordova.js",
+        "/cordova_plugins.js",
         "/index.html",
-        "/main.d7a50485a64d1388.js",
+        "/main.2708d6bc0ec9646b.js",
         "/polyfills-core-js.482119fd0c53c127.js",
         "/polyfills-dom.a376f9102aab6bcd.js",
         "/polyfills.aeaabc4be69bb8ad.js",
-        "/runtime.108336b80c94e7f0.js",
+        "/runtime.fb72c4dd75f08a82.js",
         "/styles.ea135f39442f8786.css"
       ],
       "patterns": []
@@ -1837,7 +1840,7 @@
     "/3544.4e1ffc7d2a8b0060.js": "832b20f1e2c83e82e181f9c4d257f0ed2ca8b083",
     "/3672.51b2dc3255f3d341.js": "7e08a2314b6e4d3b2ca2461085078080cdb810f0",
     "/3734.f7e07053d3740a57.js": "44fd4a283215e94e6b7f1da6d2e1131929ccf2d4",
-    "/397.8d260b9b8244f9d5.js": "f30752998c4adf8514ae1c41c160c99df2168b0d",
+    "/397.fb9ac491cc8d9c72.js": "aa59c85062410d05ece60c19a73d34058b89351f",
     "/3998.e554126e83bd603b.js": "15ef5bf6a618b3b3e355f370242c81679bb1f93d",
     "/4087.1ac3553d2d419b63.js": "f8102f286ae172813899c4affe0a100d418a37c2",
     "/4090.ab2cc22f5b858f54.js": "13c40f48e015b9d0b0ad11cdb50fe433e571cbe0",
@@ -3607,12 +3610,15 @@
     "/assets/img/speakers/rabbit.jpg": "5286740d99c900d080da59c511865f495e8c6266",
     "/assets/img/speakers/turtle.jpg": "8bf240a802062bf0ee3c1b31ff12cd9158b5734e",
     "/common.9225203840700805.js": "977bbeb0f0ea6de68058397070a6e8623ec16c21",
-    "/index.html": "ee068c3f72885a2f1edab3dbc9b86d156dfa93e9",
-    "/main.d7a50485a64d1388.js": "a4684a297d37c4b934616b95c46a8b15f0168f2e",
+    "/cordova.1b4900b667e37cb3.js": "db183661a4e6a1e3a8582b2b8b720c0c3446f980",
+    "/cordova.js": "496eb79cb96c0a2d69a4b6647ad643e4268186fc",
+    "/cordova_plugins.js": "cfdee5a54a2b7996bdeb48595fa3d4b71a2f3989",
+    "/index.html": "96ea57d96a1e83018f611b39ef48efe0baa1e821",
+    "/main.2708d6bc0ec9646b.js": "00b83bcc6632449c839998d4884b06d9d380c8f6",
     "/polyfills-core-js.482119fd0c53c127.js": "707df99a391f9796b73fbde8d7b0252320de4a61",
     "/polyfills-dom.a376f9102aab6bcd.js": "eee080508f3cddf0d75bb720ef8750f8f7a2e7cf",
     "/polyfills.aeaabc4be69bb8ad.js": "cf66e2ab5177ac3f35ce790f7f9f10b21895de69",
-    "/runtime.108336b80c94e7f0.js": "7ed3919b899bb3df38f8b2692379ce0135d8d5f3",
+    "/runtime.fb72c4dd75f08a82.js": "77a339dcc2ea8d9a5e5637bafd917b88f1e757f3",
     "/styles.ea135f39442f8786.css": "9e6584184cb8496459329af9c0894cc4ffb194df"
   },
   "navigationUrls": [
