@@ -354,7 +354,7 @@ ${error.stack}`;
             return cachedResponse;
           }
         }
-        const res = await this.fetchAndCacheOnce(this.newRequestWithMetadata(req.url, req));
+        const res = await this.fetchAndCacheOnce(this.adapter.newRequest(req.url));
         return res.clone();
       } else {
         return null;
@@ -451,7 +451,7 @@ ${error.stack}`;
         if (redirectLimit === 0) {
           throw new SwCriticalError(`Response hit redirect limit (fetchFromNetwork): request redirected too many times, next is ${res.url}`);
         }
-        return this.fetchFromNetwork(this.newRequestWithMetadata(res.url, req), redirectLimit - 1);
+        return this.fetchFromNetwork(this.adapter.newRequest(res.url), redirectLimit - 1);
       }
       return res;
     }
@@ -466,7 +466,7 @@ ${error.stack}`;
           makeCacheBustedRequest = fetchedHash !== canonicalHash;
         }
         if (makeCacheBustedRequest) {
-          const cacheBustReq = this.newRequestWithMetadata(this.cacheBust(req.url), req);
+          const cacheBustReq = this.adapter.newRequest(this.cacheBust(req.url));
           response = await this.safeFetch(cacheBustReq);
           if (response.ok) {
             const cacheBustedHash = sha1Binary(await response.clone().arrayBuffer());
@@ -494,9 +494,6 @@ ${error.stack}`;
         }
       }
       return false;
-    }
-    newRequestWithMetadata(url, options) {
-      return this.adapter.newRequest(url, { headers: options.headers });
     }
     cacheBust(url) {
       return url + (url.indexOf("?") === -1 ? "?" : "&") + "ngsw-cache-bust=" + Math.random();
@@ -872,9 +869,6 @@ ${error.stack}`;
     { positive: false, regex: "^/.*__" }
   ];
   var AppVersion = class {
-    get okay() {
-      return this._okay;
-    }
     constructor(scope2, adapter2, database, idle, debugHandler, manifest, manifestHash) {
       this.scope = scope2;
       this.adapter = adapter2;
@@ -883,8 +877,8 @@ ${error.stack}`;
       this.manifest = manifest;
       this.manifestHash = manifestHash;
       this.hashTable = /* @__PURE__ */ new Map();
-      this._okay = true;
       this.indexUrl = this.adapter.normalizeUrl(this.manifest.index);
+      this._okay = true;
       Object.keys(manifest.hashTable).forEach((url) => {
         this.hashTable.set(adapter2.normalizeUrl(url), manifest.hashTable[url]);
       });
@@ -905,6 +899,9 @@ ${error.stack}`;
         include: includeUrls.map((spec) => new RegExp(spec.regex)),
         exclude: excludeUrls.map((spec) => new RegExp(spec.regex))
       };
+    }
+    get okay() {
+      return this._okay;
     }
     async initializeFully(updateFrom) {
       try {
@@ -950,7 +947,7 @@ ${error.stack}`;
       return null;
     }
     isNavigationRequest(req) {
-      if (req.method !== "GET" || req.mode !== "navigate") {
+      if (req.mode !== "navigate") {
         return false;
       }
       if (!this.acceptsTextHtml(req)) {
@@ -1017,7 +1014,7 @@ ${error.stack}`;
   };
 
   // bazel-out/k8-fastbuild-ST-2e5f3376adb5/bin/packages/service-worker/worker/src/debug.mjs
-  var SW_VERSION = "16.2.2";
+  var SW_VERSION = "14.1.0";
   var DEBUG_LOG_BUFFER_SIZE = 100;
   var DebugHandler = class {
     constructor(driver, adapter2) {
@@ -1222,8 +1219,8 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ "Content-Type": "text/plain" }
       this.lastUpdateCheck = null;
       this.scheduledNavUpdateCheck = false;
       this.loggedInvalidOnlyIfCachedRequest = false;
-      this.controlTable = this.db.open("control");
       this.ngswStatePath = this.adapter.parseUrl("ngsw/state", this.scope.registration.scope).path;
+      this.controlTable = this.db.open("control");
       this.scope.addEventListener("install", (event) => {
         event.waitUntil(this.scope.skipWaiting());
       });
@@ -1371,10 +1368,6 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ "Content-Type": "text/plain" }
           } else {
             await this.scope.clients.openWindow(urlToOpen);
           }
-          break;
-        }
-        case "sendRequest": {
-          await this.scope.fetch(urlToOpen);
           break;
         }
         default:
