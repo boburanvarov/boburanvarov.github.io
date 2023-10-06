@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkangular_pwa=self.webpackChunkangular_pwa||[]).push([[592],{2619:(p,a,u)=>{u.d(a,{b:()=>e});const e="http://23.88.37.197:9898/api/v1/"}}]);
